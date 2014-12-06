@@ -37,7 +37,7 @@ def process_mailbox(M):
             cur = db.cursor()
             try:
                 cur.execute("INSERT INTO tracker (email, subject) VALUES (%s, %s)", (fromEmail, subject))
-                cur.commit()
+                db.commit()
             except MySQLdb.ProgrammingError, e:
                 print 'There was a MySQL warning.  This is the info we have about it: %s' %(e)
             finally:
