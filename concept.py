@@ -37,7 +37,8 @@ def process_mailbox(M):
             cur2 = db.cursor()
             try:
                 cur2.execute("INSERT INTO tracker (email, subject) VALUES (%s, %s)", (fromEmail, subject))
-            except Exception, e: print repr(e)
+            except MySQLdb.ProgrammingError, e:
+                print 'There was a MySQL warning.  This is the info we have about it: %s' %(e)
 
 M = imaplib.IMAP4_SSL('imap.gmail.com')
 
