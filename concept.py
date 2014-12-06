@@ -20,8 +20,9 @@ def process_mailbox(M):
         msg = email.message_from_string(data[0][1])
         decode = email.header.decode_header(msg['Subject'])[0]
         subject = unicode(decode[0], 'utf-8')
+        fromEmail = email.utils.parseaddr(msg['From'])[1]
         print 'Message %s: %s' % (num, subject)
-        print email.utils.parseaddr(msg['From'])[1]
+        print fromEmail
         print 'Raw Date:', msg['Date']
         date_tuple = email.utils.parsedate_tz(msg['Date'])
         if date_tuple:
@@ -29,7 +30,12 @@ def process_mailbox(M):
                 email.utils.mktime_tz(date_tuple))
             print "Local Date:", \
                 local_date.strftime("%a, %d %b %Y %H:%M:%S")
+        if note !="":
+            import MySQLdb
+            db = MySQLdb.connect(host="localhost", user=sys.argv[3], passwd=sys.argv[4],db="CONCEPT")
 
+            cur2 = db.cursor()
+            cur2.execute("INSERT INTO tracker (email, subject) VALUES (%s, %s)", (fromEmail, subject))
 
 M = imaplib.IMAP4_SSL('imap.gmail.com')
 
