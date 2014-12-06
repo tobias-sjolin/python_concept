@@ -30,7 +30,7 @@ def process_mailbox(M):
                 email.utils.mktime_tz(date_tuple))
             print "Local Date:", \
                 local_date.strftime("%a, %d %b %Y %H:%M:%S")
-        if note !="":
+        if fromEmail !="":
             import MySQLdb
             db = MySQLdb.connect(host="localhost", user=sys.argv[3], passwd=sys.argv[4],db="CONCEPT")
 
