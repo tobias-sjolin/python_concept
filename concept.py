@@ -19,7 +19,10 @@ def process_mailbox(M):
     
         msg = email.message_from_string(data[0][1])
         decode = email.header.decode_header(msg['Subject'])[0]
-        subject = unicode(decode[0], 'utf-8')
+        try:
+            subject = unicode(decode[0], 'utf-8')
+        except UnicodeDecodeError, e:
+            print decode[0]
         fromEmail = email.utils.parseaddr(msg['From'])[1]
         print 'Message %s: %s' % (num, subject)
         print fromEmail
