@@ -2,6 +2,7 @@ import sys
 import imaplib
 import getpass
 import email
+import email.header
 import datetime
 
 def process_mailbox(M):
