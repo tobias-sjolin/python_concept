@@ -41,7 +41,7 @@ def process_mailbox(M):
             except MySQLdb.ProgrammingError, e:
                 print 'There was a MySQL warning.  This is the info we have about it: %s' %(e)
             finally:
-                cur.close()
+                db.close()
 
 M = imaplib.IMAP4_SSL('imap.gmail.com')
 
