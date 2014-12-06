@@ -35,7 +35,10 @@ def process_mailbox(M):
             db = MySQLdb.connect(host="localhost", user=sys.argv[3], passwd=sys.argv[4],db="concept")
 
             cur2 = db.cursor()
-            cur2.execute("INSERT INTO tracker (email, subject) VALUES (%s, %s)", (fromEmail, subject))
+            try:
+                cur2.execute("INSERT INTO tracker (email, subject) VALUES (%s, %s)", (fromEmail, subject))
+            except Exception:
+                e: print repr(e)
 
 M = imaplib.IMAP4_SSL('imap.gmail.com')
 
