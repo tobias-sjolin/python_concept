@@ -37,8 +37,7 @@ def process_mailbox(M):
             cur2 = db.cursor()
             try:
                 cur2.execute("INSERT INTO tracker (email, subject) VALUES (%s, %s)", (fromEmail, subject))
-            except Exception:
-                e: print repr(e)
+            except Exception, e: print repr(e)
 
 M = imaplib.IMAP4_SSL('imap.gmail.com')
 
