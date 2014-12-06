@@ -21,7 +21,7 @@ def process_mailbox(M):
         decode = email.header.decode_header(msg['Subject'])[0]
         subject = unicode(decode[0], 'utf-8')
         print 'Message %s: %s' % (num, subject)
-        print email.utils.parseaddr(msg['From'])
+        print email.utils.parseaddr(msg['From'])[1]
         print 'Raw Date:', msg['Date']
         date_tuple = email.utils.parsedate_tz(msg['Date'])
         if date_tuple:
