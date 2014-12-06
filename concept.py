@@ -32,7 +32,7 @@ def process_mailbox(M):
                 local_date.strftime("%a, %d %b %Y %H:%M:%S")
         if fromEmail !="":
             import MySQLdb
-            db = MySQLdb.connect(host="localhost", user=sys.argv[3], passwd=sys.argv[4],db="CONCEPT")
+            db = MySQLdb.connect(host="localhost", user=sys.argv[3], passwd=sys.argv[4],db="concept")
 
             cur2 = db.cursor()
             cur2.execute("INSERT INTO tracker (email, subject) VALUES (%s, %s)", (fromEmail, subject))
